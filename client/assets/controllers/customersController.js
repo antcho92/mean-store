@@ -1,5 +1,5 @@
 console.log('customersController loaded')
-app.controller('customersController', ['$scope', 'customersFactory', function($scope, cF) {
+app.controller('customersController', ['$scope', 'customersFactory', 'moment', function($scope, cF, moment) {
   var self = this;
   cF.index(function(customers) {
     self.customers = customers;

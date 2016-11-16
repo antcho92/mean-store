@@ -12,7 +12,7 @@
   <input type="submit" name="name" value="Add order">
 </form>
 <h2>Orders:</h2>
-<input type="text" ng-model='oC.orderFilter.$'>
+<input type="text" ng-model='oC.orderFilter.$' placeholder="search products">
 <table>
   <tr>
     <th>Customer Name</th>
@@ -20,7 +20,7 @@
     <th>Quantity</th>
     <th>Date</th>
   </tr>
-  <tr ng-repeat='order in oC.orders | filter: oC.orderFilter:strict track by $index'>
+  <tr ng-repeat='order in oC.orders | filter: oC.orderFilter:strict track by order._id'>
     <th>{{order._customer.name}}</th>
     <th>{{order._product.name}}</th>
     <th>{{order.quantity}}</th>

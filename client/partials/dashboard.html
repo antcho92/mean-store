@@ -1,1 +1,43 @@
 <h1>Dashboard</h1>
+<div ng-controller='productsController as pC'>
+  <h3>Products</h3>
+  <input type="text" placeholder="search" ng-model='pC.productFilter'>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Quantity</th>
+    </tr>
+    <tr ng-repeat='product in pC.products | filter: pC.productFilter | limitTo:-5 | orderBy:"-createdAt" track by product._id'>
+      <td>{{product.name}}</td>
+      <td><img ng-src="{{product.image}}" alt="{{product.description}}"></td>
+      <td>{{product.quantity}} left</td>
+    </tr>
+  </table>
+  <a href="#/products">show more</a>
+</div>
+<div ng-controller='ordersController as oC'>
+  <h3>Recent Orders</h3>
+  <table>
+    <tr>
+      <th>Customer Name</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Date</th>
+    </tr>
+    <tr ng-repeat='order in oC.orders | limitTo:-3 | orderBy:"-createdAt" track by order._id'>
+      <th>{{order._customer.name}}</th>
+      <th>{{order._product.name}}</th>
+      <th>{{order.quantity}}</th>
+      <th>{{order.createdAt | date:'MM/dd/yyyy'}}</th>
+    </tr>
+  </table>
+  <a href="#/orders">show all orders...</a>
+</div>
+<div ng-controller='customersController as cC'>
+  <h3>New Customers</h3>
+  <ul>
+    <li class='customer' ng-repeat='customer in cC.customers | orderBy:"-createdAt" | limitTo:-3 track by customer._id'>{{customer.name}} joined <span am-time-ago="customer.createdAt"></span></li>
+  </ul>
+  <a href="#customers">show all customers</a>
+</div>

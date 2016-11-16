@@ -1,5 +1,9 @@
 console.log('app.js file loaded');
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'angularMoment']);
+
+app.run(function(amMoment) {
+    amMoment.changeLocale('de');
+});
 
 app.config(function($routeProvider) {
   $routeProvider
