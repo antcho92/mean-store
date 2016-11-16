@@ -1,0 +1,22 @@
+<h3>Add a new product:</h3>
+<form ng-submit='pC.create()'>
+  <input type="text" placeholder="name" ng-model='pC.product.name'>
+  <input type="text" placeholder="Image" ng-model='pC.product.image'>
+  <textarea rows="4" cols="30" placeholder="Description" ng-model='pC.product.description'></textarea>
+  <input type="number" placeholder="quantity" ng-model='pC.product.quantity'>
+  <input type="submit" name="name" value="Add Product">
+</form>
+<h2>Products:</h2>
+<input type="text" ng-model='pC.productFilter.name' placeholder="Search Products">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Quantity</th>
+  </tr>
+  <tr ng-repeat='product in pC.products | filter: pC.productFilter track by $index'>
+    <td>{{product.name}}</td>
+    <td><img ng-src="{{product.image}}" alt="{{product.description}}"></td>
+    <td>{{product.quantity}} left</td>
+  </tr>
+</table>
